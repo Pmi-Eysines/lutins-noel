@@ -97,13 +97,32 @@ function solved(){
  $('rewardImage').alt='Félicitations de '+active.name;
  show('reward');
 }
-function complete(){if(state.done.length!==4)return;if(!state.finished){state.finished=Date.now();save();}success();}
+const resultsEndpoint='https://script.google.com/macros/s/AKfycby8FaCoEjt5M4xAl-mUJuaFZmK1VFSrBSZWhocDbwx-hxlE_9TaYKRUSuLzd7s1fi90/exec';
+function newRunId(){return (window.crypto&&crypto.randomUUID)?crypto.randomUUID():Date.now()+'-'+Math.random().toString(36).slice(2);}
+function sendResult(){
+ if(!state||!state.finished||state.done.length!==4||state.resultSent)return;
+ if(!state.runId){state.runId=newRunId();save();}
+ // Une seule tentative automatique par chargement de page ; le serveur dédoublonne par ID.
+ if(state.resultSending)return;
+ state.resultSending=true;
+ const payload={prenom:state.name,temps:Math.floor((state.finished-state.started)/1000),id:state.runId};
+ fetch(resultsEndpoint,{
+  method:'POST',mode:'no-cors',keepalive:true,
+  headers:{'Content-Type':'text/plain;charset=utf-8'},
+  body:JSON.stringify(payload)
+ }).then(()=>{
+  // Le mode no-cors ne permet pas de confirmer l'écriture côté Google.
+  // On note l'envoi tenté pour éviter les répétitions sur actualisation.
+  state.resultSent=true;save();
+ }).catch(()=>{state.resultSending=false;});
+}
+function complete(){if(state.done.length!==4)return;if(!state.finished){state.finished=Date.now();save();}sendResult();success();}
 function success(){$('winner').textContent=state.name;$('elapsed').textContent='Temps de résolution : '+duration(state.finished-state.started);show('success');}
 $('introYes').addEventListener('click',()=>{if(state&&!state.finished)home();else show('welcome');});
 $('introNo').addEventListener('click',()=>{$('introExit').textContent='Vous pouvez fermer cet onglet pour quitter le jeu.';window.close();});
 $('start').addEventListener('click',()=>{
  let name=$('firstName').value.trim();if(!name){$('startError').textContent='Saisissez votre prénom pour commencer.';return;}
- state={name,started:Date.now(),done:[],finished:null};save();home();
+ state={name,started:Date.now(),done:[],finished:null,runId:newRunId(),resultSent:false};save();home();
 });
 $('firstName').addEventListener('keydown',e=>{if(e.key==='Enter')$('start').click();});
 $('check').addEventListener('click',check);
