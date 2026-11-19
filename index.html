@@ -1,51 +1,117 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="fr">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>Les quatre lutins de Noël — MDS Eysines</title>
 <style>
 :root{font-family:Georgia,serif;color:#fff8e8;background:#102b25}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#325443,#102b25 70%)}main{max-width:980px;margin:auto;padding:25px 18px 60px}header{text-align:center;margin:20px 0 28px}h1{font-size:clamp(2rem,5vw,3.4rem);margin:8px 0;color:#f4d68e}h2{color:#f4d68e}p{line-height:1.55}.sub{color:#dfdfc9}.panel{border:1px solid #8b805b;background:#183b32;border-radius:18px;padding:24px;box-shadow:0 10px 35px #071a1466}.center{text-align:center}.hidden{display:none!important}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.tile{border:2px solid #ad9c6e;background:#244439;border-radius:14px;padding:0;overflow:hidden;color:inherit;text-align:left;cursor:pointer;transition:transform .15s}.tile:hover,.tile:focus-visible{transform:translateY(-3px);outline:2px solid #f4d68e}.tile img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}.tile .info{padding:12px}.tile strong{display:block;font-size:1.2rem;color:#f4d68e}.tile span{display:block;margin-top:4px;font-size:.95rem}.chest{width:100%;display:flex;align-items:center;gap:16px;border:2px solid #b89b57;background:#4a3424;border-radius:15px;padding:20px;color:#fff4db;cursor:pointer;margin-top:18px;text-align:left}.chest[disabled]{opacity:.65;cursor:not-allowed}.chest .emoji{font-size:3.7rem}.chest strong{font-size:1.35rem;color:#f5d58b}.btn{background:#e7c477;color:#24281e;border:0;border-radius:10px;padding:12px 20px;font:700 1rem system-ui;cursor:pointer}.btn.secondary{background:#31564b;color:white;border:1px solid #a1b4a3}.btn:disabled{opacity:.5;cursor:not-allowed}input{font:1.1rem system-ui;border:2px solid #c6b784;border-radius:9px;padding:12px;background:#fffdf5;color:#18271e;max-width:100%;width:320px}label{display:block;margin:16px 0 8px;font-weight:bold}.feedback{min-height:1.7em;color:#ffd6a2}.note{font: .9rem system-ui;color:#d3d7c8}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.digit{font:700 2.4rem system-ui;background:#0d261e;color:#ffe2a0;border:2px solid #bba36b;padding:14px;border-radius:12px;text-align:center;min-width:60px}.digits{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}.clues{padding-left:22px;line-height:1.9}.pill{display:inline-block;border:1px solid #aa9567;border-radius:99px;padding:6px 12px;color:#f6dca0;font: .9rem system-ui}footer{text-align:center;margin-top:25px;color:#bac9bc;font:.8rem system-ui}@media(min-width:750px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.tile strong{font-size:1rem}}@media(max-width:480px){.panel{padding:17px}.chest .emoji{font-size:2.7rem}}
 .story-placeholder{max-width:720px;margin:22px auto 28px;padding:22px;border:1px dashed #c3ad79;border-radius:12px;text-align:left;background:#102f27}.intro-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}.intro-actions .btn{min-width:120px}
-</style>
+.story-text{white-space:pre-line;line-height:1.7}.reward-image,.final-image{width:100%;max-width:760px;max-height:520px;object-fit:contain;border-radius:12px;margin:16px auto;display:block}.cakes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.cake{min-width:0;background:#244439;border:1px solid #8b805b;border-radius:12px;padding:8px}.cake-image{height:160px;display:flex;align-items:center;justify-content:center}.cake-image img{max-width:100%;max-height:100%;object-fit:contain}.slot{width:100%;min-height:50px;border:2px dashed #c7b27b;background:#17372f;color:white;border-radius:9px;cursor:pointer}.slot.filled{border-style:solid;background:#345a4c}.names{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:16px 0}.tag{background:#e7c477;color:#24281e;border:2px solid transparent;border-radius:9px;padding:12px;font-weight:bold;cursor:grab}.tag.selected{border-color:white}.tag:disabled{opacity:.35}@media(max-width:650px){.cake{padding:3px}.cakes{gap:4px}.cake-image{height:85px}.slot{font-size:.65rem;min-height:44px}}</style>
 </head>
-<body><main><header><div class="pill">MDS Eysines · Jeu de Noël</div><h1>🎄 Les quatre lutins de Noël</h1><p class="sub">Retrouvez leurs secrets et ouvrez le coffre mystérieux.</p></header>
-<section id="intro" class="panel center"><h2>🎄 L’histoire des quatre lutins</h2><div class="story-placeholder"><p><strong>Une mystérieuse aventure de Noël se prépare à la MDS Eysines…</strong></p><p>Les quatre lutins islandais ont semé des surprises et des indices dans les bureaux.</p><p><em>À compléter : racontez ici votre histoire, le mystère à résoudre et la mission confiée aux joueurs.</em></p></div><h2>Êtes-vous prêt à relever le défi ?</h2><div class="intro-actions"><button class="btn" id="introYes">Oui</button><button class="btn secondary" id="introNo">Non</button></div><p id="introExit" class="feedback" role="status"></p></section>
-<section id="welcome" class="panel center"><h2>Bienvenue dans l'aventure !</h2><p>Quatre lutins ont semé des indices dans les bureaux. Explorez les images, résolvez leurs énigmes et retrouvez les quatre chiffres du cadenas.</p><label for="firstName">Votre prénom</label><input id="firstName" maxlength="40" autocomplete="given-name" placeholder="Saisissez votre prénom"><p class="note">Votre prénom et votre progression sont conservés localement sur cet appareil. Le temps de jeu est mesuré sans être affiché pendant la partie.</p><button class="btn" id="start">Commencer l'aventure</button><p class="feedback" id="startError" role="status"></p></section>
-<section id="home" class="hidden"><div class="topline"><h2 id="greeting">Les enquêtes</h2><span class="pill" id="progress"></span></div><p>Choisissez un lutin. Les énigmes peuvent être résolues dans n'importe quel ordre.</p><div class="grid" id="elves"></div><button id="chestBtn" class="chest" disabled><span class="emoji">🧰</span><span><strong>Le vieux coffre</strong><br><span id="chestLabel">Résolvez les quatre enquêtes pour déverrouiller le coffre.</span></span></button><p class="note">Les lutins disparaissent après la réussite de leur énigme.</p></section>
-<section id="puzzle" class="panel hidden"><button class="btn secondary" id="back1">← Retour aux lutins</button><div class="topline"><h2 id="puzzleTitle"></h2><span class="pill">Énigme de démonstration</span></div><img id="puzzleImage" alt="Portrait original du lutin" style="max-width:240px;width:100%;border-radius:12px;display:block;margin:12px auto"><p id="puzzleText"></p><p><a class="btn secondary" href="https://pmi-eysines.github.io/visite-mds/" target="_blank" rel="noopener noreferrer" style="display:inline-block;text-decoration:none">🏢 Explorer la MDS Eysines ↗</a></p><label for="answer">Votre réponse</label><input id="answer" autocomplete="off" placeholder="Entrez votre réponse"><p><button class="btn" id="check">Valider la réponse</button></p><p class="feedback" id="puzzleFeedback" role="status"></p></section>
-<section id="reward" class="panel center hidden"><h2>✨ Bravo !</h2><p id="rewardText"></p><div class="digits" style="justify-content:center"><span class="digit" id="rewardDigit"></span></div><p>Retenez ce chiffre : il servira pour ouvrir le coffre.</p><button class="btn" id="back2">Continuer l'aventure</button></section>
-<section id="final" class="panel hidden"><button class="btn secondary" id="back3">← Retour</button><h2>🧰 Le coffre mystérieux</h2><p>Vous avez trouvé les quatre chiffres. À vous de déterminer leur ordre grâce aux indices suivants.</p><p class="note">Énigme finale de démonstration : les indices seront personnalisés plus tard.</p><div class="digits" id="foundDigits"></div><ol class="clues"><li>Le troisième chiffre est le plus grand.</li><li>Le quatrième chiffre est le plus petit.</li><li>Le premier chiffre est plus grand que le deuxième.</li></ol><label for="code">Combinaison du cadenas (4 chiffres)</label><input id="code" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="0000"><p><button class="btn" id="openChest">Ouvrir le coffre</button></p><p class="feedback" id="finalFeedback" role="status"></p></section>
-<section id="success" class="panel center hidden"><div style="font-size:4rem">🎁🎉</div><h2>Félicitations, <span id="winner"></span> !</h2><p>Vous avez ouvert le coffre de Noël et résolu toutes les énigmes !</p><h2 id="elapsed"></h2><p class="note">Votre résultat est enregistré uniquement sur cet appareil dans cette première version. Le tableau centralisé sera ajouté ultérieurement.</p><button class="btn" id="restart">Nouvelle partie</button></section>
-<footer>Version de démonstration · Les portraits proviennent exclusivement de l'image fournie · Aucune donnée envoyée à un serveur</footer></main>
+<body><main><header><div class="pill">MDS Eysines · Jeu de Noël</div><h1>🎄 Les quatre lutins de Noël</h1><p class="sub">Explorez la MDS et résolvez les quatre énigmes des lutins.</p></header>
+<section class="panel center" id="intro"><h2>🎄 L’histoire des quatre lutins</h2><div class="story-placeholder"><p><strong>Une mystérieuse aventure de Noël se prépare à la MDS Eysines…</strong></p><p>Les quatre lutins islandais ont semé des surprises et des indices dans les bureaux.</p><p><em>À compléter : racontez ici votre histoire, le mystère à résoudre et la mission confiée aux joueurs.</em></p></div><h2>Êtes-vous prêt à relever le défi ?</h2><div class="intro-actions"><button class="btn" id="introYes">Oui</button><button class="btn secondary" id="introNo">Non</button></div><p class="feedback" id="introExit" role="status"></p></section>
+<section class="panel center" id="welcome"><h2>Bienvenue dans l'aventure !</h2><p>Quatre lutins ont semé des indices dans les bureaux. Explorez la MDS et résolvez leurs énigmes dans l'ordre de votre choix.</p><label for="firstName">Votre prénom</label><input autocomplete="given-name" id="firstName" maxlength="40" placeholder="Saisissez votre prénom"/><p class="note">Votre prénom et votre progression sont conservés localement sur cet appareil. Le temps de jeu est mesuré sans être affiché pendant la partie.</p><button class="btn" id="start">Commencer l'aventure</button><p class="feedback" id="startError" role="status"></p></section>
+<section class="hidden" id="home"><div class="topline"><h2 id="greeting">Les enquêtes</h2><span class="pill" id="progress"></span></div><p>Choisissez un lutin. Les énigmes peuvent être résolues dans n'importe quel ordre.</p><div class="grid" id="elves"></div><p class="note">Les lutins disparaissent après la réussite de leur énigme.</p></section>
+<section class="panel hidden" id="puzzle"><button class="btn secondary" id="back1">← Retour aux lutins</button><div class="topline"><h2 id="puzzleTitle"></h2></div><img alt="Portrait original du lutin" id="puzzleImage" style="max-width:240px;width:100%;border-radius:12px;display:block;margin:12px auto"/><div class="story-text" id="puzzleText"></div><p><a class="btn secondary" href="https://pmi-eysines.github.io/visite-mds/" rel="noopener noreferrer" style="display:inline-block;text-decoration:none" target="_blank">🏢 Explorer la MDS Eysines ↗</a></p><div id="textAnswer"><label for="answer">Votre réponse</label><input autocomplete="off" id="answer"/><p><button class="btn" id="check">Valider la réponse</button></p></div><div class="hidden" id="cakePuzzle"><p>Sélectionnez un prénom, puis son emplacement sous le gâteau (ou faites glisser l'étiquette).</p><div class="cakes"><div class="cake"><div class="cake-image"><img alt="Pain d’épices" src="images/pain-epices.png"/></div><button class="slot" data-index="0">Déposer ici</button></div><div class="cake"><div class="cake-image"><img alt="Bûche" src="images/buche.png"/></div><button class="slot" data-index="1">Déposer ici</button></div><div class="cake"><div class="cake-image"><img alt="Sablé" src="images/sable.png"/></div><button class="slot" data-index="2">Déposer ici</button></div><div class="cake"><div class="cake-image"><img alt="Panettone" src="images/panettone.png"/></div><button class="slot" data-index="3">Déposer ici</button></div></div><div class="names" id="names"></div><p><button class="btn" id="checkCakes">Valider</button> <button class="btn secondary" id="resetCakes">Recommencer</button></p></div><p class="feedback" id="puzzleFeedback" role="status"></p></section>
+<section class="panel center hidden" id="reward"><h2>✨ Bravo !</h2><p id="rewardText"></p><img alt="Félicitations" class="reward-image" id="rewardImage"/><p><button class="btn" id="back2">Continuer l’aventure</button></p></section>
+
+<section class="panel center hidden" id="success"><h2>🎄 Félicitations, <span id="winner"></span> !</h2><img alt="Les autres lutins réunis dans la neige" class="final-image" src="images/finale-bravo.png"/><h2>Bravo, vous avez permis au reste des lutins de pouvoir distribuer leurs présents !</h2><p>Grâce à votre persévérance et à votre sens de l'observation, les quatre énigmes ont été résolues. La magie de Noël peut maintenant continuer ! 🎁</p><h2 id="elapsed"></h2><button class="btn" id="restart">Nouvelle partie</button></section>
+<footer>Les quatre lutins de Noël · MDS Eysines · Portraits originaux conservés</footer></main>
 <script>
 'use strict';
-// DONNÉES PROVISOIRES : remplacer lors de la définition des véritables énigmes.
-const puzzles=[
- {id:'stekkjastaur',name:'Stekkjastaur',role:'Le farceur',color:'rouge',question:'Dans les bureaux de Sylvie et de SPC, Stekkjastaur a fait disparaître des objets. Pour cette démonstration, entrez le mot LIVRE suivi du chiffre 4 (exemple : LIVRE 4).',answer:'LIVRE4',digit:'5'},
- {id:'giljagaur',name:'Giljagaur',role:'Le cacheur de clés',color:'vert',question:'Quatre clés sont cachées dans quatre bureaux. Pour cette démonstration, le mot à reconstituer est NOEL.',answer:'NOEL',digit:'3'},
- {id:'pottaskefill',name:'Pottaskefill',role:'Le distributeur de cadeaux',color:'bleu',question:'Quatre cadeaux ont été déposés dans quatre bureaux. Pour cette démonstration, la somme attendue est 42.',answer:'42',digit:'7'},
- {id:'askasleikir',name:'Askasleikir',role:'Le gourmand',color:'jaune',question:'Des gâteaux sont cachés dans deux bureaux. Pour cette démonstration, saisissez le mot SUCRE.',answer:'SUCRE',digit:'1'}
-];
-const storageKey='mds-lutins-noel-demo-v1';let state=null,active=null;
+const puzzles=[{"id": "stekkjastaur", "name": "Stekkjastaur", "role": "Le farceur", "color": "rouge", "answers": ["EQUIPE6", "6EQUIPE"], "question": "Stekkjastaur a encore frappé !\n\nCe lutin malicieux s'est amusé à faire disparaître des objets et des textes dans les bureaux de la MDS d'Eysines.\n\nVotre mission : retrouver ce qu'il a subtilisé !\n\nPour vous aider, Stekkjastaur a laissé entrevoir sa silhouette vêtue de rouge dans chacun des bureaux où il a commis ses méfaits.\n\nExplorez les lieux, observez attentivement chaque détail et découvrez ce que notre farceur a fait disparaître.\n\n🔎 Votre énigme\nAssociez vos deux réponses, sans espace, puis saisissez le résultat dans la case ci-dessous."}, {"id": "giljagaur", "name": "Giljagaur", "role": "Le cacheur de clés", "color": "vert", "answers": ["NOEL"], "question": "Giljagaur a une passion bien particulière : les clés !\n\nCe petit lutin malicieux s'est amusé à dissimuler quatre clés dans les bureaux de la MDS d'Eysines. Mais attention, il ne les a pas cachées au hasard…\n\nVotre mission : retrouver les quatre clés dissimulées dans les bureaux.\n\nPour vous aider, vous pourrez apercevoir sa silhouette vêtue de vert dans les bureaux où il a caché ses précieux objets.\n\nExplorez les lieux, ouvrez l'œil et examinez attentivement chaque détail.\n\n🔎 Votre énigme\nLes quatre clés renferment un secret. Observez-les attentivement et découvrez le message qu'elles vous révèlent.\n\nQuel est le mot mystère ?"}, {"id": "pottaskefill", "name": "Pottaskefill", "role": "Le distributeur de cadeaux", "color": "bleu", "answers": ["76", "1-76", "4-76"], "question": "Pottaskefill adore Noël, et surtout les cadeaux !\n\nCette année, notre généreux lutin a décidé de déposer plusieurs cadeaux dans les bureaux de la MDS d'Eysines. Mais Pottaskefill est aussi un petit malin : ses cadeaux cachent un secret !\n\nVotre mission : retrouver tous les cadeaux qu'il a dissimulés.\n\nPour vous guider, observez les bureaux dans lesquels vous apercevrez sa silhouette vêtue de bleu.\n\n🔎 Votre énigme\nVous avez retrouvé tous les cadeaux de Pottaskefill ? Chaque lieu où il a déposé un cadeau compte !\n\nAdditionnez les numéros des bureaux dans lesquels vous avez trouvé ses cadeaux.\n\nQuel résultat obtenez-vous ?"}, {"id": "askasleikir", "name": "Askasleikir", "role": "Le gourmand", "color": "jaune", "answers": [], "question": "Askasleikir est un véritable gourmand !\n\nQuatre délicieuses pâtisseries de Noël sont associées à quatre personnes de la MDS d'Eysines.\n\nVotre mission : retrouver à qui appartient chaque gâteau.\n\n🔎 Votre énigme\nPlacez les quatre étiquettes portant les prénoms sous les bons gâteaux, puis cliquez sur « Valider ». Vous connaîtrez le nombre de bonnes associations, mais pas lesquelles !"}];
+const storageKey='mds-lutins-noel-enigmes-v2';
+let state=null,active=null,assigned=[null,null,null,null],selected=null;
 const $=id=>document.getElementById(id);
+const labels=['Caroline','Éliane','Stéphanie','Sylvie'];
+const expected=['Stéphanie','Sylvie','Caroline','Éliane'];
 function save(){localStorage.setItem(storageKey,JSON.stringify(state));}
-function read(){try{const s=JSON.parse(localStorage.getItem(storageKey));if(s&&typeof s.name==='string'&&Number.isFinite(s.started)&&Array.isArray(s.done))return s;}catch(e){}return null;}
-function show(id){['intro','welcome','home','puzzle','reward','final','success'].forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo(0,0);}
-function normalize(s){return s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]/g,'').toUpperCase();}
-function duration(ms){let n=Math.floor(ms/1000);return `${Math.floor(n/3600)?Math.floor(n/3600)+' h ':''}${String(Math.floor(n%3600/60)).padStart(2,'0')} min ${String(n%60).padStart(2,'0')} s`;}
-function home(){if(!state){show('welcome');return;}if(state.finished){success();return;}$('greeting').textContent=`À toi de jouer, ${state.name} !`;$('progress').textContent=`${state.done.length} / 4 énigmes réussies`;$('elves').replaceChildren();puzzles.filter(p=>!state.done.includes(p.id)).forEach(p=>{let b=document.createElement('button');b.className='tile';b.innerHTML=`<img src="https://pmi-eysines.github.io/lutins-noel/images/${p.id}.jpg" alt="Portrait de ${p.name}, bonnet ${p.color}"><div class="info"><strong>${p.name}</strong><span>${p.role}</span></div>`;b.addEventListener('click',()=>openPuzzle(p.id));$('elves').append(b);});let ready=state.done.length===4;$('chestBtn').disabled=!ready;$('chestLabel').textContent=ready?'Toutes les énigmes sont réussies : ouvrez le coffre !':'Résolvez les quatre enquêtes pour déverrouiller le coffre.';show('home');}
-function openPuzzle(id){active=puzzles.find(p=>p.id===id);if(!active||state.done.includes(id))return;$('puzzleTitle').textContent=active.name+' — '+active.role;$('puzzleImage').src='https://pmi-eysines.github.io/lutins-noel/images/'+id+'.jpg';$('puzzleText').textContent=active.question;$('answer').value='';$('puzzleFeedback').textContent='';show('puzzle');$('answer').focus();}
-function check(){if(!active)return;if(normalize($('answer').value)!==active.answer){$('puzzleFeedback').textContent='Ce n’est pas la bonne réponse. Réessayez !';return;}state.done.push(active.id);save();$('rewardText').textContent=`${active.name} vous confie son chiffre secret :`;$('rewardDigit').textContent=active.digit;show('reward');}
-function final(){if(state.done.length!==4)return;$('foundDigits').replaceChildren();puzzles.forEach(p=>{let d=document.createElement('span');d.className='digit';d.textContent=p.digit;$('foundDigits').append(d);});$('code').value='';$('finalFeedback').textContent='';show('final');}
-function success(){let ms=(state.finished||Date.now())-state.started;$('winner').textContent=state.name;$('elapsed').textContent='Temps de résolution : '+duration(ms);show('success');}
-$('introYes').addEventListener('click',()=>{if(state && !state.finished){home();}else{show('welcome');}});
+function read(){try{let v=JSON.parse(localStorage.getItem(storageKey));if(v&&typeof v.name==='string'&&Number.isFinite(v.started)&&Array.isArray(v.done))return v;}catch(e){}return null;}
+function show(id){['intro','welcome','home','puzzle','reward','success'].forEach(x=>$(x).classList.toggle('hidden',x!==id));window.scrollTo(0,0);}
+function normalize(v){return String(v).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]/g,'').toUpperCase();}
+function duration(ms){let n=Math.max(0,Math.floor(ms/1000));return `${Math.floor(n/3600)?Math.floor(n/3600)+' h ':''}${String(Math.floor(n%3600/60)).padStart(2,'0')} min ${String(n%60).padStart(2,'0')} s`;}
+function home(){
+ if(!state){show('welcome');return;}
+ if(state.finished||state.done.length===4){complete();return;}
+ $('greeting').textContent=`À toi de jouer, ${state.name} !`;
+ $('progress').textContent=`${state.done.length} / 4 énigmes réussies`;
+ $('elves').replaceChildren();
+ puzzles.filter(p=>!state.done.includes(p.id)).forEach(p=>{
+  let b=document.createElement('button');b.className='tile';
+  b.innerHTML=`<img src="https://pmi-eysines.github.io/lutins-noel/images/${p.id}.jpg" alt="Portrait original de ${p.name}, bonnet ${p.color}"><div class="info"><strong>${p.name}</strong><span>${p.role}</span></div>`;
+  b.addEventListener('click',()=>openPuzzle(p.id));$('elves').append(b);
+ });
+ show('home');
+}
+function renderCakes(){
+ $('names').replaceChildren();
+ labels.forEach(name=>{
+  let b=document.createElement('button');b.className='tag'+(selected===name?' selected':'');
+  b.textContent=name;b.draggable=!assigned.includes(name);b.disabled=assigned.includes(name);
+  b.addEventListener('click',()=>{selected=selected===name?null:name;renderCakes();});
+  b.addEventListener('dragstart',e=>{selected=name;e.dataTransfer.setData('text/plain',name);});
+  $('names').append(b);
+ });
+ document.querySelectorAll('.slot').forEach((b,i)=>{b.textContent=assigned[i]||'Déposer ici';b.classList.toggle('filled',!!assigned[i]);});
+}
+function place(i,name){
+ if(!labels.includes(name))return;
+ assigned=assigned.map(v=>v===name?null:v);assigned[i]=name;selected=null;
+ $('puzzleFeedback').textContent='';renderCakes();
+}
+document.querySelectorAll('.slot').forEach((b,i)=>{
+ b.addEventListener('click',()=>{if(selected)place(i,selected);else if(assigned[i]){assigned[i]=null;$('puzzleFeedback').textContent='';renderCakes();}});
+ b.addEventListener('dragover',e=>e.preventDefault());
+ b.addEventListener('drop',e=>{e.preventDefault();place(i,e.dataTransfer.getData('text/plain'));});
+});
+function openPuzzle(id){
+ active=puzzles.find(p=>p.id===id);if(!active||state.done.includes(id))return;
+ $('puzzleTitle').textContent=active.name+' — '+active.role;
+ $('puzzleImage').src='https://pmi-eysines.github.io/lutins-noel/images/'+id+'.jpg';
+ $('puzzleText').textContent=active.question;$('answer').value='';$('puzzleFeedback').textContent='';
+ $('textAnswer').classList.toggle('hidden',id==='askasleikir');
+ $('cakePuzzle').classList.toggle('hidden',id!=='askasleikir');
+ if(id==='askasleikir'){assigned=[null,null,null,null];selected=null;renderCakes();}
+ show('puzzle');if(id!=='askasleikir')$('answer').focus();
+}
+function check(){
+ if(!active||active.id==='askasleikir')return;
+ if(!active.answers.some(a=>normalize(a)===normalize($('answer').value))){
+  $('puzzleFeedback').textContent='Ce n’est pas la bonne réponse. Réessayez !';return;
+ }
+ solved();
+}
+function checkCakes(){
+ if(!active||active.id!=='askasleikir')return;
+ if(assigned.some(v=>!v)){$('puzzleFeedback').textContent='Placez les quatre étiquettes avant de valider.';return;}
+ let correct=assigned.reduce((n,v,i)=>n+(v===expected[i]?1:0),0);
+ if(correct===4){solved();return;}
+ $('puzzleFeedback').textContent=`Vous avez ${correct} bonne${correct>1?'s':''} réponse${correct>1?'s':''}. Réessayez !`;
+}
+function solved(){
+ if(!state.done.includes(active.id))state.done.push(active.id);
+ save();
+ $('rewardText').textContent=`Félicitations ! Vous avez réussi l’énigme de ${active.name}.`;
+ $('rewardImage').src='images/'+active.id+'-bravo.png';
+ $('rewardImage').alt='Félicitations de '+active.name;
+ show('reward');
+}
+function complete(){if(state.done.length!==4)return;if(!state.finished){state.finished=Date.now();save();}success();}
+function success(){$('winner').textContent=state.name;$('elapsed').textContent='Temps de résolution : '+duration(state.finished-state.started);show('success');}
+$('introYes').addEventListener('click',()=>{if(state&&!state.finished)home();else show('welcome');});
 $('introNo').addEventListener('click',()=>{$('introExit').textContent='Vous pouvez fermer cet onglet pour quitter le jeu.';window.close();});
-$('start').addEventListener('click',()=>{let name=$('firstName').value.trim();if(!name){$('startError').textContent='Saisissez votre prénom pour commencer.';return;}state={name,started:Date.now(),done:[],finished:null};save();home();});
+$('start').addEventListener('click',()=>{
+ let name=$('firstName').value.trim();if(!name){$('startError').textContent='Saisissez votre prénom pour commencer.';return;}
+ state={name,started:Date.now(),done:[],finished:null};save();home();
+});
 $('firstName').addEventListener('keydown',e=>{if(e.key==='Enter')$('start').click();});
-$('check').addEventListener('click',check);$('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check();});
-$('back1').addEventListener('click',home);$('back2').addEventListener('click',home);$('back3').addEventListener('click',home);$('chestBtn').addEventListener('click',final);
-$('openChest').addEventListener('click',()=>{if($('code').value.trim()!=='5371'){$('finalFeedback').textContent='La combinaison ne fonctionne pas. Relisez les indices !';return;}state.finished=Date.now();save();success();});
-$('code').addEventListener('keydown',e=>{if(e.key==='Enter')$('openChest').click();});
-$('restart').addEventListener('click',()=>{localStorage.removeItem(storageKey);state=null;$('firstName').value='';$('startError').textContent='';show('welcome');});
+$('check').addEventListener('click',check);
+$('answer').addEventListener('keydown',e=>{if(e.key==='Enter')check();});
+$('checkCakes').addEventListener('click',checkCakes);
+$('resetCakes').addEventListener('click',()=>{assigned=[null,null,null,null];selected=null;$('puzzleFeedback').textContent='';renderCakes();});
+$('back1').addEventListener('click',home);
+$('back2').addEventListener('click',()=>{if(state.done.length===4)complete();else home();});
+$('restart').addEventListener('click',()=>{localStorage.removeItem(storageKey);state=null;$('firstName').value='';$('startError').textContent='';show('intro');});
 state=read();show('intro');
 </script></body></html>
